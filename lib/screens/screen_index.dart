@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_football/tabs/tab_comm.dart';
+import 'package:flutter_football/tabs/tab_game.dart';
 import 'package:flutter_football/tabs/tab_home.dart';
 import 'package:flutter_football/tabs/tab_pred.dart';
 import 'package:flutter_football/tabs/tab_profile.dart';
@@ -13,7 +14,8 @@ class _IndexScreenState extends State<IndexScreen> {
 
   int _currentIndex = 0;
   final List<Widget> _tabs = [
-    HomeTab(),
+    GameTab(),
+    // HomeTab(),
     CommTab(),
     PredTab(),
     ProfileTab(),
