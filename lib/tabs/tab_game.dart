@@ -3,6 +3,7 @@ import 'package:flutter_football/models/game.dart';
 import 'package:flutter_football/models/model_PL.dart';
 import 'package:flutter_football/providers/PL_api.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class GameTab extends StatefulWidget {
 
@@ -15,6 +16,7 @@ class _GameTabState extends State<GameTab> {
   PLApi plApi = PLApi();
   List<PL> pl = [];
   bool isLoading = true;
+  String month = DateFormat('yy.M').format(DateTime.now());
 
   Future initPL() async{
     pl = await plApi.getPL();
@@ -35,7 +37,30 @@ class _GameTabState extends State<GameTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('경기일정'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: (){},
+        ),
+        title: Container(
+          width: 180,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+                IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    onPressed: (){
+
+                    },
+                ),
+                Text(month + '월'),
+                IconButton(
+                  icon: Icon(Icons.arrow_forward_ios),
+                  onPressed: (){},
+                ),
+            ],
+          ),
+        ),
       ),
       body: isLoading ? Center( child: const CircularProgressIndicator(),) :
         ListView.separated(
@@ -54,12 +79,11 @@ class _GameTabState extends State<GameTab> {
 class GameTile extends StatelessWidget {
   final PL pl;
   GameTile({required this.pl});
-
+  
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Container(
-        // height: MediaQuery.of(context).size.height * 0.11,
         padding: EdgeInsets.all(7),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,7 +94,7 @@ class GameTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   pl.homeTeam.crest.contains('.svg') ?
-                  SvgPicture.network(pl.homeTeam.crest, width: 40, height: 40,) :
+                  SvgPicture.network(pl.homeTeam.crest, width: 40.0, height: 40.0,) :
                   Image.network(
                     pl.homeTeam.crest,
                     width: 40,
@@ -108,7 +132,7 @@ class GameTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   pl.awayTeam.crest.contains('.svg') ?
-                  SvgPicture.network(pl.awayTeam.crest, width: 40, height: 40,) :
+                  SvgPicture.network(pl.awayTeam.crest, width: 40.0, height: 40.0,) :
                   Image.network(
                   pl.awayTeam.crest,
                   width: 40,

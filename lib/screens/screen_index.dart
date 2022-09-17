@@ -37,7 +37,7 @@ class _IndexScreenState extends State<IndexScreen> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '경기일정'),
           BottomNavigationBarItem(icon: Icon(Icons.groups), label: '커뮤니티'),
           BottomNavigationBarItem(icon: Icon(Icons.sports_soccer), label: '승부예측'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),

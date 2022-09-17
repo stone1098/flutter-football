@@ -1,4 +1,5 @@
 import 'package:flutter_football/models/model_Team.dart';
+import 'package:intl/intl.dart';
 
 class PL{
   late int id;
@@ -23,7 +24,8 @@ class PL{
 
   PL.fromJson(Map<String, dynamic> map) {
     id = map?['id'] ?? -1;
-    utcDate = map?['utcDate'] ?? '';
+    DateTime date = DateTime.parse(map?['utcDate']);
+    utcDate = DateFormat("MM.dd  HH:mm").format(date.add(Duration(hours: 9)));
     matchday = map?['matchday'] ?? -1;
     status = map?['status'] ?? '';
     homeTeam = (map['homeTeam'] != null
