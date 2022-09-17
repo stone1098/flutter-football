@@ -113,10 +113,12 @@ class GameTile extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                pl.status == 'FINISHED' ?
                 Text(
                   pl.homeScore.toString() + ' : ' + pl.awayScore.toString(),
                   style: TextStyle(fontSize: 25),
-                ),
+                ) :
+                Text('경기전', style: TextStyle(fontSize: 13, color: Colors.blue),),
                 Container(
                   height: 5,
                 ),
